@@ -20,6 +20,7 @@ SlateportCity_Mart_Pokemart:
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_SUN_STONE
 	.2byte ITEM_OVAL_STONE
+	.2byte ITEM_ORAN_BERRY
 	.2byte ITEM_NONE
 	release
 	end
