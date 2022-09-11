@@ -1036,7 +1036,6 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_ICE_SCALES] = 1,
     [ABILITY_ICE_FACE] = 1,
     [ABILITY_PASTEL_VEIL] = 1,
-    [ABILITY_CACOPHONY] = 1,
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
@@ -4510,49 +4509,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_FORECAST:
-            if (gBattleMons[battler].item == ITEM_DAMP_ROCK)
-            {
-                if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
-                    effect++;
-                }
-                else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
-                {
-                    gSpecialStatuses[battler].switchInAbilityDone = 1;
-                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                    effect++;
-                }
-            }
-            else if (gBattleMons[battler].item == ITEM_HEAT_ROCK)
-            {
-                if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
-                    effect++;
-                }
-                else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
-                {
-                    gSpecialStatuses[battler].switchInAbilityDone = 1;
-                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                    effect++;
-                }
-            }
-            else if (gBattleMons[battler].item == ITEM_ICY_ROCK)
-            {
-                if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
-                    effect++;
-                }
-                else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
-                {
-                    gSpecialStatuses[battler].switchInAbilityDone = 1;
-                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                    effect++;
-                }
-            }
-            break;   
         case ABILITY_FLOWER_GIFT:
             effect = TryWeatherFormChange(battler);
             if (effect != 0)
@@ -8316,10 +8272,6 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
-    case ABILITY_CACOPHONY:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.2));
-        break;
     }
 
     // field abilities
@@ -8833,10 +8785,6 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
-    case ABILITY_CACOPHONY:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(2.0));
-        break;
     }
 
     // ally's abilities
@@ -8922,7 +8870,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
         else if (moveType == TYPE_WATER)
-            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            dmg = ApplyModifier(UQ_4_12(1.2), dmg);
     }
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_TEMPORARY))
     {
@@ -8934,7 +8882,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_PERMANENT))
     {
         if (moveType == TYPE_FIRE)
-            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            dmg = ApplyModifier(UQ_4_12(1.2), dmg);
         else if (moveType == TYPE_WATER)
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
     }
@@ -9139,12 +9087,6 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
-    }
-    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && GetBattlerAbility(battlerAtk) == ABILITY_CACOPHONY && (gBattleMoves[move].flags & FLAG_SOUND) && mod == UQ_4_12(0.0))
-    {
-        mod = UQ_4_12(1.0);
-        if (recordAbilities)
-            RecordAbilityBattle(battlerAtk, ABILITY_CACOPHONY);
     }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))

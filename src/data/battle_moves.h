@@ -1967,7 +1967,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BONE_CLUB] =
     {
         #ifdef REBALANCED_VERSION
-            .accuracy = 100,
+            .accuracy = 90,
             .secondaryEffectChance = 30,
             .pp = 15,
         #else
@@ -2482,14 +2482,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         #ifdef REBALANCED_VERSION
             .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING | FLAG_TWO_STRIKES,
-            .accuracy = 100,
         #else
             .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_TWO_STRIKES,
-            .accuracy = 90,
         #endif
         .effect = EFFECT_DOUBLE_HIT,
         .power = 50,
         .type = TYPE_GROUND,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
@@ -3182,7 +3181,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BONE_RUSH] =
     {
         #ifdef REBALANCED_VERSION
-            .power = 20,
+            .power = 15,
             .priority = 1,
         #else
             .power = 25,
@@ -4899,7 +4898,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .secondaryEffectChance = 30,
         #endif
         .effect = EFFECT_POISON_FANG,
-        .power = 75,
+        .power = 50,
         .type = TYPE_POISON,
         .accuracy = 100,
         .pp = 15,
