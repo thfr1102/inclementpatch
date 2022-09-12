@@ -7505,12 +7505,19 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_PELIPPER] =
     {
-        .baseHP        = 60,
         .baseAttack    = 50,
         .baseDefense   = 100,
-        .baseSpeed     = 65,
-        .baseSpDefense = 70,
-        .baseSpAttack  = 95,
+        #ifdef REBALANCED_VERSION
+            .baseHP        = 70,
+            .baseSpeed     = 85,
+            .baseSpAttack  = 105,
+            .baseSpDefense = 80,
+        #else
+            .baseHP        = 60,
+            .baseSpeed     = 65,
+            .baseSpAttack  = 95,
+            .baseSpDefense = 70,
+        #endif
         .type1 = TYPE_WATER,
         .type2 = TYPE_FLYING,
         .catchRate = 45,
@@ -7633,13 +7640,14 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 70,
         .baseAttack    = 60,
-        .baseSpeed     = 80,
         .baseSpDefense = 82,
         #ifdef REBALANCED_VERSION
             .baseDefense   = 72,
+            .baseSpeed     = 90,
             .baseSpAttack  = 110,
         #else
             .baseDefense   = 62,
+            .baseSpeed     = 80,
             .baseSpAttack  = 100,
         #endif
         .type1 = TYPE_BUG,
@@ -16315,13 +16323,14 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 85,
         .baseAttack    = 115,
         .baseSpeed     = 50,
-        .baseSpAttack  = 105,
         #ifdef REBALANCED_VERSION
             .baseDefense   = 90,
+            .baseSpAttack  = 125,
             .baseSpDefense = 90,
             .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_SWIFT_SWIM},
         #else
             .baseDefense   = 80,
+            .baseSpAttack  = 105,
             .baseSpDefense = 80,
             .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         #endif
@@ -23015,17 +23024,27 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_SIRFETCHD] =
     {
-        .baseHP        = 62,
         .baseAttack    = 135,
         .baseDefense   = 95,
-        .baseSpeed     = 65,
+        #ifdef REBALANCED_VERSION
+            .baseHP        = 72,
+            .baseSpeed     = 85,
+            .type1 = TYPE_FIGHTING,
+            .type2 = TYPE_FLYING,
+            .abilities = {ABILITY_STEADFAST, ABILITY_SUPER_LUCK, ABILITY_SCRAPPY},
+        #else
+            .baseHP        = 62,
+            .baseSpeed     = 65,
+            .type1 = TYPE_FIGHTING,
+            .type2 = TYPE_FIGHTING,
+            .abilities = {ABILITY_STEADFAST, ABILITY_NONE, ABILITY_SCRAPPY},
+        #endif
         .baseSpAttack  = 68,
         .baseSpDefense = 82,
-        .type1 = TYPE_FIGHTING,
-        .type2 = TYPE_FIGHTING,
         .catchRate = 45,
         .expYield = 177,
         .evYield_Attack    = 2,
+        .item1 = ITEM_LEEK,
         .item2 = ITEM_LEEK,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -23033,7 +23052,6 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_STEADFAST, ABILITY_NONE, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
     },
@@ -26010,18 +26028,19 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 58,
         .baseSpDefense = 62,
         .type1 = TYPE_FIGHTING,
-        .type2 = TYPE_FIGHTING,
+        .type2 = TYPE_FLYING,
         .catchRate = 45,
         .expYield = 132,
         .evYield_Attack    = 1,
         .item1 = ITEM_LEEK,
+        .item2 = ITEM_LEEK,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = 70,
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_SCRAPPY},
+        .abilities = {ABILITY_STEADFAST, ABILITY_SUPER_LUCK, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
         .flags = F_GALARIAN_FORM,

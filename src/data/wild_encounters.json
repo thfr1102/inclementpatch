@@ -4421,12 +4421,12 @@
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_ELECTABUZZ"
+                "species": "SPECIES_TAPU_KOKO"
               },
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_TOGEDEMARU"
+                "species": "SPECIES_ARCTOZOLT"
               }
             ]
           }
@@ -13145,17 +13145,17 @@
               {
                 "min_level": 41,
                 "max_level": 43,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_FARFETCHD_GALARIAN"
               },
               {
                 "min_level": 41,
                 "max_level": 43,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_FARFETCHD_GALARIAN"
               },
               {
                 "min_level": 41,
                 "max_level": 43,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_FARFETCHD_GALARIAN"
               }
             ]
           },
