@@ -2488,7 +2488,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_DOUBLE_HIT,
         .power = 50,
         .type = TYPE_GROUND,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
@@ -4898,7 +4898,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .secondaryEffectChance = 30,
         #endif
         .effect = EFFECT_POISON_FANG,
-        .power = 50,
+        .power = 75,
         .type = TYPE_POISON,
         .accuracy = 100,
         .pp = 15,
