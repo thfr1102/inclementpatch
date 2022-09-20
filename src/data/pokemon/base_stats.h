@@ -9034,12 +9034,14 @@ const struct BaseStats gBaseStats[] =
         #ifdef REBALANCED_VERSION
             .baseHP        = 85,
             .baseAttack    = 90,
+            .type1 = TYPE_DRAGON,
+            .type2 = TYPE_FAIRY,
         #else
             .baseHP        = 75,
             .baseAttack    = 70,
+            .type1 = TYPE_DRAGON,
+            .type2 = TYPE_FLYING,
         #endif
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_FLYING,
         .catchRate = 45,
         .expYield = 172,
         .evYield_SpDefense = 2,
@@ -9770,11 +9772,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef REBALANCED_VERSION
-            .abilities = {ABILITY_KEEN_EDGE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
-        #else
-            .abilities = {ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
-        #endif
+        .abilities = {ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
     },
@@ -23154,14 +23152,23 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_FALINKS] =
     {
-        .baseHP        = 65,
         .baseAttack    = 100,
         .baseDefense   = 100,
-        .baseSpeed     = 75,
-        .baseSpAttack  = 70,
-        .baseSpDefense = 60,
-        .type1 = TYPE_FIGHTING,
-        .type2 = TYPE_FIGHTING,
+        #ifdef REBALANCED_VERSION
+            .baseHP        = 85,
+            .baseSpeed     = 85,
+            .baseSpAttack  = 50,
+            .baseSpDefense = 80,
+            .type1 = TYPE_FIGHTING,
+            .type2 = TYPE_STEEL,
+        #else
+            .baseHP        = 65,
+            .baseSpeed     = 75,
+            .baseSpAttack  = 70,
+            .baseSpDefense = 60,
+            .type1 = TYPE_FIGHTING,
+            .type2 = TYPE_FIGHTING,
+        #endif
         .catchRate = 45,
         .expYield = 165,
         .evYield_Attack    = 2,
@@ -24777,7 +24784,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_KEEN_EDGE, ABILITY_KEEN_EDGE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
     },
@@ -24913,15 +24920,15 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_LOPUNNY_MEGA] =
     {
-        .baseHP        = 65,
         .baseAttack    = 136,
         .baseDefense   = 94,
         .baseSpeed     = 135,
+        .baseSpAttack  = 54,
         .baseSpDefense = 96,
         #ifdef REBALANCED_VERSION
-            .baseSpAttack  = 74,
+            .baseHP        = 85,
         #else
-            .baseSpAttack  = 54,
+            .baseHP        = 65,
         #endif
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_FIGHTING,

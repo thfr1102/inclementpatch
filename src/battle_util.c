@@ -8183,7 +8183,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             break;
     case ABILITY_KEEN_EDGE:
         if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.3));
+           MulModifier(&modifier, UQ_4_12(1.2));
         break;
     case ABILITY_SHEER_FORCE:
         if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
